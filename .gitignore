@@ -1,3 +1,6 @@
+# Ignore generated files, this should go in release package though.
+*_i.h
+
 #################
 ## Eclipse
 #################
