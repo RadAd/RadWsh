@@ -1,0 +1,26 @@
+HKCR
+{
+	RadWin32.1 = s 'RadWin32 Class'
+	{
+		CLSID = s '{EDD540AC-66FC-4168-9777-1524FF5DE5B8}'
+	}
+	RadWin32 = s 'RadWin32 Class'
+	{		
+		CurVer = s 'RadWin32.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {EDD540AC-66FC-4168-9777-1524FF5DE5B8} = s 'RadWin32 Class'
+		{
+			ProgID = s 'RadWin32.1'
+			VersionIndependentProgID = s 'RadWin32'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{2F66E96C-E93A-4E19-B71B-D9B2DDC92F00}'
+			Version = s '1.0'
+		}
+	}
+}

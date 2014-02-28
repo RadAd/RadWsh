@@ -1,0 +1,77 @@
+// RadWsh.idl : IDL source for RadWsh
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (RadWsh.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "dispex.idl";
+
+[
+	object,
+	uuid(DFD53694-00D9-47C7-9688-7AC9AA561C2B),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IRadWindow : IDispatch{
+    [propget, id(1)] HRESULT hWnd([out, retval] ULONGLONG* pVal);
+    [propget, id(2)] HRESULT Text([out, retval] BSTR* pVal);
+    [propput, id(2)] HRESULT Text([in] BSTR newVal);
+    [propget, id(3), helpstring("GetWindowLong")] HRESULT Long([in] LONG index, [out, retval] LONG* pVal);
+    [propput, id(3), helpstring("SetWindowLong")] HRESULT Long([in] LONG index, [in] LONG newVal);
+    [propget, id(4), helpstring("GetClassName")] HRESULT Class([out, retval] BSTR* pVal);
+};
+[
+	object,
+	uuid(FC4A9E56-A60A-41A8-B8FE-CE0BF3E249CE),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IRadFixedCollection : IDispatch{
+    [propget, id(1)] HRESULT Count([out, retval] LONG* pVal);
+    [propget, id(DISPID_NEWENUM), restricted] HRESULT _NewEnum([out, retval] IUnknown** pVal);
+};
+[
+	object,
+	uuid(A402E10F-1786-4DE4-8E0E-B5E590E54C45),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IRadWin32 : IDispatch{
+    [propget, id(1)] HRESULT ForegroundWindow([out, retval] IRadWindow** pVal);
+    [propget, id(2)] HRESULT Windows([out, retval] IUnknown** pVal);
+};
+[
+	uuid(2F66E96C-E93A-4E19-B71B-D9B2DDC92F00),
+	version(1.0),
+]
+library RadWshLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(B90F5D72-A680-4663-B86E-8A77563BEBD8)		
+	]
+	coclass RadWindow
+	{
+		[default] interface IRadWindow;
+	};
+	[
+		uuid(EDD540AC-66FC-4168-9777-1524FF5DE5B8)		
+	]
+	coclass RadWin32
+	{
+		[default] interface IRadWin32;
+	};
+	[
+		uuid(57396489-5D24-4800-A418-124A7D98769A)		
+	]
+	coclass RadFixedCollection
+	{
+		[default] interface IRadFixedCollection;
+	};
+};
+

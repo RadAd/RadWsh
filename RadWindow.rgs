@@ -1,0 +1,16 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {B90F5D72-A680-4663-B86E-8A77563BEBD8} = s 'RadWindow Class'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{2F66E96C-E93A-4E19-B71B-D9B2DDC92F00}'
+			Version = s '1.0'
+		}
+	}
+}
