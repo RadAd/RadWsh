@@ -88,7 +88,7 @@ public:
             it->second->AddRef();
             return it->second;
         }
-        else if (hWnd != NULL)
+        else
         {
             CComObject<CRadWindow>* pRadWindow;
             CComObject<CRadWindow>::CreateInstance(&pRadWindow);
@@ -98,8 +98,6 @@ public:
 
             return pRadWindow;
         }
-        else
-            return nullptr;
     }
 
     STDMETHOD(get_hWnd)(ULONGLONG* pVal);
