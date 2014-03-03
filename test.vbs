@@ -1,6 +1,8 @@
 Set rw = CreateObject("RadWin32")
 
+Const GWL_EXSTYLE = -20
 Const GWL_STYLE = -16
+Const GWL_ID = -12
 
 Const WS_VISIBLE = &H10000000
 
@@ -13,7 +15,8 @@ Function ToHex(v)
 End Function
 
 Sub Process(w, d)
-    WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Parent.hWnd), ToHex(w.Long(GWL_STYLE)), w.Text, "[" & w.Class & "]"
+    'WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Parent.hWnd), ToHex(w.Long(GWL_STYLE)), ToHex(w.Long(GWL_EXSTYLE)), w.Text, "[" & w.Class & "]"
+    WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Long(GWL_STYLE)), ToHex(w.Long(GWL_EXSTYLE)), w.Text, "[" & w.Class & "]"
     For Each cw in w.Children
         If cw.Long(GWL_STYLE) And WS_VISIBLE Then
             Process cw, d + 1
