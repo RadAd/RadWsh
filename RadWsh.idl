@@ -17,11 +17,12 @@ import "dispex.idl";
 ]
 interface IRadWindow : IDispatch{
     [propget, id(1)] HRESULT hWnd([out, retval] ULONGLONG* pVal);
-    [propget, id(2)] HRESULT Text([out, retval] BSTR* pVal);
-    [propput, id(2)] HRESULT Text([in] BSTR newVal);
+    [propget, id(2), helpstring("GetWindowText")] HRESULT Text([out, retval] BSTR* pVal);
+    [propput, id(2), helpstring("SetWindowText")] HRESULT Text([in] BSTR newVal);
     [propget, id(3), helpstring("GetWindowLong")] HRESULT Long([in] LONG index, [out, retval] LONG* pVal);
     [propput, id(3), helpstring("SetWindowLong")] HRESULT Long([in] LONG index, [in] LONG newVal);
     [propget, id(4), helpstring("GetClassName")] HRESULT Class([out, retval] BSTR* pVal);
+    [propget, id(5), helpstring("EnumChildWindows")] HRESULT Children([out, retval] IUnknown** pVal);
 };
 [
 	object,
@@ -42,8 +43,8 @@ interface IRadFixedCollection : IDispatch{
 	pointer_default(unique)
 ]
 interface IRadWin32 : IDispatch{
-    [propget, id(1)] HRESULT ForegroundWindow([out, retval] IRadWindow** pVal);
-    [propget, id(2)] HRESULT Windows([out, retval] IUnknown** pVal);
+    [propget, id(1), helpstring("GetForegroundWindow")] HRESULT ForegroundWindow([out, retval] IRadWindow** pVal);
+    [propget, id(2), helpstring("EnumWindows")] HRESULT Windows([out, retval] IUnknown** pVal);
 };
 [
 	uuid(2F66E96C-E93A-4E19-B71B-D9B2DDC92F00),

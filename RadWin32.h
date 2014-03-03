@@ -54,7 +54,7 @@ public:
 
 
     STDMETHOD(get_ForegroundWindow)(IRadWindow** pVal);
-    STDMETHOD(get_Windows)(IUnknown** pVal);
+    STDMETHOD(get_Windows)(IUnknown** ppUnk);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(RadWin32), CRadWin32)

@@ -3,10 +3,16 @@
 #include "stdafx.h"
 #include "RadWindow.h"
 
+#include "RadFixedCollection.h"
 
 // CRadWindow
 
-
+static BOOL CALLBACK EnumChildWindowsProc(HWND hWnd, LPARAM lParam)
+{
+    std::vector<CComVariant>* wnds = (std::vector<CComVariant>*) lParam;
+    wnds->push_back(CComVariant(CRadWindow::Create(hWnd)));
+    return TRUE;
+}
 
 STDMETHODIMP CRadWindow::get_hWnd(ULONGLONG* pVal)
 {
@@ -72,3 +78,15 @@ STDMETHODIMP CRadWindow::get_Class(BSTR* pVal)
 
     return S_OK;
 }
+
+STDMETHODIMP CRadWindow::get_Children(IUnknown** ppUnk)
+{
+    std::vector<CComVariant> wnds;
+
+    EnumChildWindows(m_hWnd, EnumChildWindowsProc, (LPARAM) &wnds);
+
+    *ppUnk = CRadFixedCollection::Create(wnds);
+
+    return S_OK;
+}
+
