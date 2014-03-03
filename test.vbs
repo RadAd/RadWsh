@@ -13,7 +13,11 @@ Function ToHex(v)
 End Function
 
 Sub Process(w, d)
-    WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Long(GWL_STYLE)), w.Text, "[" & w.Class & "]"
+    phWnd = 0
+    If Not w.Parent is Nothing Then
+        phWnd = w.Parent.hWnd
+    End If
+    WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(phWnd), ToHex(w.Long(GWL_STYLE)), w.Text, "[" & w.Class & "]"
     For Each cw in w.Children
         If cw.Long(GWL_STYLE) And WS_VISIBLE Then
             Process cw, d + 1

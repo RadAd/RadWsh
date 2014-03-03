@@ -90,3 +90,9 @@ STDMETHODIMP CRadWindow::get_Children(IUnknown** ppUnk)
     return S_OK;
 }
 
+STDMETHODIMP CRadWindow::get_Parent(IRadWindow** pVal)
+{
+    *pVal = CRadWindow::Create(GetParent(m_hWnd));
+
+    return S_OK;
+}

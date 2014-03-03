@@ -23,6 +23,7 @@ interface IRadWindow : IDispatch{
     [propput, id(3), helpstring("SetWindowLong")] HRESULT Long([in] LONG index, [in] LONG newVal);
     [propget, id(4), helpstring("GetClassName")] HRESULT Class([out, retval] BSTR* pVal);
     [propget, id(5), helpstring("EnumChildWindows")] HRESULT Children([out, retval] IUnknown** pVal);
+    [propget, id(6), helpstring("GetParent")] HRESULT Parent([out, retval] IRadWindow** pVal);
 };
 [
 	object,

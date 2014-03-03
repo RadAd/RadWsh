@@ -85,6 +85,7 @@ public:
     STDMETHOD(put_Long)(LONG index, LONG newVal);
     STDMETHOD(get_Class)(BSTR* pVal);
     STDMETHOD(get_Children)(IUnknown** ppUnk);
+    STDMETHOD(get_Parent)(IRadWindow** pVal);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(RadWindow), CRadWindow)
