@@ -24,6 +24,10 @@ interface IRadWindow : IDispatch{
     [propget, id(4), helpstring("GetClassName")] HRESULT Class([out, retval] BSTR* pVal);
     [propget, id(5), helpstring("EnumChildWindows")] HRESULT Children([out, retval] IUnknown** pVal);
     [propget, id(6), helpstring("GetParent")] HRESULT Parent([out, retval] IRadWindow** pVal);
+    [propget, id(7), helpstring("Convenience for GetWindowLong(GWL_STYLE)")] HRESULT Style([out, retval] LONG* pVal);
+    [propput, id(7), helpstring("Convenience for SetWindowLong(GWL_STYLE, ?)")] HRESULT Style([in] LONG newVal);
+    [propget, id(8), helpstring("Convenience for GetWindowLong(GWL_EXSTYLE)")] HRESULT ExStyle([out, retval] LONG* pVal);
+    [propput, id(8), helpstring("Convenience for SetWindowLong(GWL_EXSTYLE, ?)")] HRESULT ExStyle([in] LONG newVal);
 };
 [
 	object,

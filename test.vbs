@@ -15,18 +15,16 @@ Function ToHex(v)
 End Function
 
 Sub Process(w, d)
-    'WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Parent.hWnd), ToHex(w.Long(GWL_STYLE)), ToHex(w.Long(GWL_EXSTYLE)), w.Text, "[" & w.Class & "]"
-    WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Long(GWL_STYLE)), ToHex(w.Long(GWL_EXSTYLE)), w.Text, "[" & w.Class & "]"
-    For Each cw in w.Children
-        If cw.Long(GWL_STYLE) And WS_VISIBLE Then
+    If w.Style And WS_VISIBLE Then
+        'WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Parent.hWnd), ToHex(w.Long(GWL_STYLE)), ToHex(w.Long(GWL_EXSTYLE)), w.Text, "[" & w.Class & "]"
+        WScript.Echo Space(d) + ToHex(w.hWnd), ToHex(w.Style), ToHex(w.ExStyle), w.Text, "[" & w.Class & "]"
+        For Each cw in w.Children
             Process cw, d + 1
-        End If
-    Next
+        Next
+    End If
 End Sub
 
 'WScript.Echo rw.Windows.Count
 For Each w in rw.Windows
-	If w.Long(GWL_STYLE) And WS_VISIBLE Then
-		Process w, 0
-	End If
+    Process w, 0
 Next

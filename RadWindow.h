@@ -64,7 +64,7 @@ private:
     {
         bool operator()(HWND a, HWND b) const
         {
-            return (int) a < (int) b;
+            return (ULONGLONG) a < (ULONGLONG) b;
         }
     };
 
@@ -108,6 +108,10 @@ public:
     STDMETHOD(get_Class)(BSTR* pVal);
     STDMETHOD(get_Children)(IUnknown** ppUnk);
     STDMETHOD(get_Parent)(IRadWindow** pVal);
+    STDMETHOD(get_Style)(LONG* pVal);
+    STDMETHOD(put_Style)(LONG newVal);
+    STDMETHOD(get_ExStyle)(LONG* pVal);
+    STDMETHOD(put_ExStyle)(LONG newVal);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(RadWindow), CRadWindow)

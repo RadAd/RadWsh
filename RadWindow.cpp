@@ -60,9 +60,10 @@ STDMETHODIMP CRadWindow::get_Long(LONG index, LONG* pVal)
 
 STDMETHODIMP CRadWindow::put_Long(LONG index, LONG newVal)
 {
-    // TODO: Add your implementation code here
-
-    return S_OK;
+    if (SetWindowLong(m_hWnd, index, newVal) == 0)
+        return HRESULT_FROM_WIN32(GetLastError());
+    else
+        return S_OK;
 }
 
 
@@ -97,4 +98,24 @@ STDMETHODIMP CRadWindow::get_Parent(IRadWindow** pVal)
     *pVal = CRadWindow::Create(GetParent(m_hWnd));
 
     return S_OK;
+}
+
+STDMETHODIMP CRadWindow::get_Style(LONG* pVal)
+{
+    return get_Long(GWL_STYLE, pVal);
+}
+
+STDMETHODIMP CRadWindow::put_Style(LONG newVal)
+{
+    return put_Long(GWL_STYLE, newVal);
+}
+
+STDMETHODIMP CRadWindow::get_ExStyle(LONG* pVal)
+{
+    return get_Long(GWL_EXSTYLE, pVal);
+}
+
+STDMETHODIMP CRadWindow::put_ExStyle(LONG newVal)
+{
+    return put_Long(GWL_EXSTYLE, newVal);
 }
