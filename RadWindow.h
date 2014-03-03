@@ -7,6 +7,7 @@
 
 #include "RadWsh_i.h"
 
+#include <map>
 
 
 #if defined(_WIN32_WCE) && !defined(_CE_DCOM) && !defined(_CE_ALLOW_SINGLE_THREADED_OBJECTS_IN_MTA)
@@ -27,6 +28,11 @@ public:
 	CRadWindow()
 	{
 	}
+
+    ~CRadWindow()
+    {
+        s_cache.erase(m_hWnd);
+    }
 
 DECLARE_REGISTRY_RESOURCEID(IDR_RADWINDOW)
 
@@ -54,17 +60,35 @@ public:
 
 
 private:
+    struct HwndLess
+    {
+        bool operator()(HWND a, HWND b) const
+        {
+            return (int) a < (int) b;
+        }
+    };
+
+    typedef std::map<HWND, CRadWindow*, HwndLess> CacheT;
+    static CacheT s_cache;
     HWND m_hWnd;
 public:
 
     void Init(HWND hWnd)
     {
+        s_cache.erase(m_hWnd);
         m_hWnd = hWnd;
+        s_cache[m_hWnd] = this;
     }
 
     static CRadWindow* Create(HWND hWnd)
     {
-        if (hWnd != NULL)
+        CacheT::const_iterator it = s_cache.find(hWnd);
+        if (it != s_cache.end())
+        {
+            it->second->AddRef();
+            return it->second;
+        }
+        else if (hWnd != NULL)
         {
             CComObject<CRadWindow>* pRadWindow;
             CComObject<CRadWindow>::CreateInstance(&pRadWindow);

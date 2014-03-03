@@ -14,6 +14,8 @@ static BOOL CALLBACK EnumChildWindowsProc(HWND hWnd, LPARAM lParam)
     return TRUE;
 }
 
+CRadWindow::CacheT CRadWindow::s_cache;
+
 STDMETHODIMP CRadWindow::get_hWnd(ULONGLONG* pVal)
 {
     *pVal = (ULONGLONG) m_hWnd;
