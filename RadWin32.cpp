@@ -32,3 +32,10 @@ STDMETHODIMP CRadWin32::get_Windows(IUnknown** ppUnk)
 
     return S_OK;
 }
+
+STDMETHODIMP CRadWin32::get_Window(ULONGLONG hWnd, IRadWindow** pVal)
+{
+    *pVal = CRadWindow::Create(reinterpret_cast<HWND>(hWnd));
+
+    return S_OK;
+}

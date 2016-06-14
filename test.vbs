@@ -24,7 +24,5 @@ Sub Process(w, d)
     End If
 End Sub
 
-'WScript.Echo rw.Windows.Count
-For Each w in rw.Windows
-    Process w, 0
-Next
+Set w = rw.Window(&h10124)
+Process w, 0

@@ -18,7 +18,7 @@ CRadWindow::CacheT CRadWindow::s_cache;
 
 STDMETHODIMP CRadWindow::get_hWnd(ULONGLONG* pVal)
 {
-    *pVal = (ULONGLONG) m_hWnd;
+    *pVal = reinterpret_cast<ULONGLONG>(m_hWnd);
 
     return S_OK;
 }

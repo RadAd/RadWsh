@@ -51,6 +51,7 @@ interface IRadFixedCollection : IDispatch{
 interface IRadWin32 : IDispatch{
     [propget, id(1), helpstring("GetForegroundWindow")] HRESULT ForegroundWindow([out, retval] IRadWindow** pVal);
     [propget, id(2), helpstring("EnumWindows")] HRESULT Windows([out, retval] IUnknown** pVal);
+    [propget, id(3)] HRESULT Window([in] ULONGLONG hWnd, [out, retval] IRadWindow** pVal);
 };
 [
 	uuid(2F66E96C-E93A-4E19-B71B-D9B2DDC92F00),
@@ -60,21 +61,21 @@ library RadWshLib
 {
 	importlib("stdole2.tlb");
 	[
-		uuid(B90F5D72-A680-4663-B86E-8A77563BEBD8)		
+		uuid(B90F5D72-A680-4663-B86E-8A77563BEBD8)
 	]
 	coclass RadWindow
 	{
 		[default] interface IRadWindow;
 	};
 	[
-		uuid(EDD540AC-66FC-4168-9777-1524FF5DE5B8)		
+		uuid(EDD540AC-66FC-4168-9777-1524FF5DE5B8)
 	]
 	coclass RadWin32
 	{
 		[default] interface IRadWin32;
 	};
 	[
-		uuid(57396489-5D24-4800-A418-124A7D98769A)		
+		uuid(57396489-5D24-4800-A418-124A7D98769A)
 	]
 	coclass RadFixedCollection
 	{
