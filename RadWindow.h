@@ -82,6 +82,9 @@ public:
 
     static CRadWindow* Create(HWND hWnd)
     {
+        if (hWnd == NULL)
+            return nullptr;
+
         CacheT::const_iterator it = s_cache.find(hWnd);
         if (it != s_cache.end())
         {

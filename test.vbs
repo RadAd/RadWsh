@@ -25,4 +25,17 @@ Sub Process(w, d)
 End Sub
 
 Set w = rw.Window(&h10124)
+Set w2 = rw.Window(0)
+Set w3 = Nothing
+WScript.Echo "IsNothing", (w2 is Nothing)
+WScript.Echo "IsNull", IsNull(w2)
+WScript.Echo "IsNothing", (w3 is Nothing)
+WScript.Echo "IsNull", IsNull(w3)
+If w Is w2 Then
+    WScript.Echo "A w Is w2"
+End If
+Set w2 = rw.Window(&h10124)
+If w Is w2 Then
+    WScript.Echo "B w Is w2"
+End If
 Process w, 0
