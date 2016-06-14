@@ -112,6 +112,7 @@ public:
     STDMETHOD(put_Style)(LONG newVal);
     STDMETHOD(get_ExStyle)(LONG* pVal);
     STDMETHOD(put_ExStyle)(LONG newVal);
+    STDMETHOD(get_pid)(ULONG* pVal);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(RadWindow), CRadWindow)

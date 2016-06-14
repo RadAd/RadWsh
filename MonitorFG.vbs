@@ -31,7 +31,7 @@ While True
 	Set nw = rw.ForegroundWindow
 	If Not Equal(w, nw) Then
 		Set w = nw
-		WScript.Echo "-", ToHex(w.hWnd), """" & w.Text & """", "[" & w.Class & "]"
+		WScript.Echo "-", ToHex(w.hWnd), w.pid, """" & w.Text & """", "[" & w.Class & "]"
 	End If
 	WScript.Sleep(1000)
 WEnd

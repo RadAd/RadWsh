@@ -44,7 +44,7 @@ STDMETHODIMP CRadWindow::put_Text(BSTR newVal)
 {
     // TODO: Add your implementation code here
 
-    return S_OK;
+    return ERROR_CALL_NOT_IMPLEMENTED;
 }
 
 
@@ -76,7 +76,7 @@ STDMETHODIMP CRadWindow::get_Class(BSTR* pVal)
     *pVal = SysAllocStringLen(sClass, len);
 #else
     if (!SysReAllocStringLen(pVal, sClass, len))
-        return STG_E_INSUFFICIENTMEMORY;
+        return E_OUTOFMEMORY;
 #endif
 
     return S_OK;
@@ -118,4 +118,10 @@ STDMETHODIMP CRadWindow::get_ExStyle(LONG* pVal)
 STDMETHODIMP CRadWindow::put_ExStyle(LONG newVal)
 {
     return put_Long(GWL_EXSTYLE, newVal);
+}
+
+STDMETHODIMP CRadWindow::get_pid(ULONG* pVal)
+{
+    GetWindowThreadProcessId(m_hWnd, pVal);
+    return S_OK;
 }

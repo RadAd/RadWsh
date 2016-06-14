@@ -28,6 +28,7 @@ interface IRadWindow : IDispatch{
     [propput, id(7), helpstring("Convenience for SetWindowLong(GWL_STYLE, ?)")] HRESULT Style([in] LONG newVal);
     [propget, id(8), helpstring("Convenience for GetWindowLong(GWL_EXSTYLE)")] HRESULT ExStyle([out, retval] LONG* pVal);
     [propput, id(8), helpstring("Convenience for SetWindowLong(GWL_EXSTYLE, ?)")] HRESULT ExStyle([in] LONG newVal);
+    [propget, id(9), helpstring("GetWindowThreadProcessId")] HRESULT pid([out, retval] ULONG* pVal);
 };
 [
 	object,
